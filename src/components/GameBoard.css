@@ -1,0 +1,53 @@
+.GameBoard {
+    position: relative;
+    width: 450px;
+    height: 450px;
+    top: 100px;
+}
+
+.GameField {
+    /* margin: auto; */
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    top: 60px;
+    position: absolute;
+    /* border: solid; */
+    
+}
+
+.Mask {
+    position: absolute;
+    top: 45px;
+    left: -15px;
+    border: 15px solid #007fff;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 450px;
+    height: 390px;
+    pointer-events: none;
+    background: radial-gradient(circle, transparent, transparent 18px, #007fff 20px, #007fff 23px, #1f90ff 23px, #1f90ff 36px, #007fff) center top/60px 60px;
+}
+
+.GameColumn {
+    flex-flow: column wrap;
+    display: flex;
+    /* border: solid; */
+}
+
+.GameCell {
+    /* border: solid; */
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    color: #fff;
+    background: radial-gradient(circle, currentcolor 12px, #666 13px, currentcolor 14px, currentcolor 21px, #666 22px, transparent 23px, transparent) center/60px;
+}
+
+.Red {
+    color: #ff010b;
+}
+
+.Yellow {
+    color: #ffd918;
+}
