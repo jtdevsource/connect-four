@@ -67,25 +67,39 @@ function evaluateBoard(board, lastCol) {
 
   const lastRow = board.cols[lastCol].count - 1;
   const searchDirs = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]];
-  const depth = 3;
-  const start = [lastCol, lastRow];
+  const depth = 4;
+  const start = [[lastCol, lastRow]];
+
+  // this finds all points around the last drop to check for wins, saves checking the board every time
+  searchDirs.forEach((dir) => {
+    for (var i = 0; i < depth; ++i) {
+      const thisPath = [(dir[0] * i) + start[0][0], (dir[1] * i) + start[0][1]];
+      if ((thisPath[0] >= 0 && thisPath[0] < board.numCols) && (thisPath[1] >= 0 && thisPath[1] < board.numRows)) {
+        start.push(thisPath);
+      }
+    }
+  });
 
   const thisOwner = board.cols[lastCol].cells[lastRow].owner;
   let result = false;
 
-  searchDirs.forEach((dir) => {
-    let path = [board['cols'][start[0]]['cells'][start[1]]];
-    for (var i = 1; i <= depth; ++i) {
-      const thisPath = [(dir[0] * i) + start[0], (dir[1] * i) + start[1]];
-      if ((thisPath[0] >= 0 && thisPath[0] < board.numCols) && (thisPath[1] >= 0 && thisPath[1] < board.numRows)) {
-        path.push(board['cols'][thisPath[0]]['cells'][thisPath[1]]);
+  // this iterates through all the points to find all wins
+  start.forEach((pos) => {
+    searchDirs.forEach((dir) => {
+      let tail = 3;
+      let path = [board['cols'][pos[0]]['cells'][pos[1]]];
+      for (var i = 1; i <= tail; ++i) {
+        const thisPath = [(dir[0] * i) + pos[0], (dir[1] * i) + pos[1]];
+        if ((thisPath[0] >= 0 && thisPath[0] < board.numCols) && (thisPath[1] >= 0 && thisPath[1] < board.numRows)) {
+          path.push(board['cols'][thisPath[0]]['cells'][thisPath[1]]);
+        }
       }
-    }
 
-    if( path.filter(cell=>cell.owner === thisOwner).length >= 4 ) {
-      path.map(cell=>cell.winner = true);
-      result = true;
-    }
+      if (path.filter(cell => cell.owner === thisOwner).length >= 4) {
+        path.map(cell => cell.winner = true);
+        result = true;
+      }
+    });
   });
 
   return result;
