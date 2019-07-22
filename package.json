@@ -1,7 +1,7 @@
 {
   "name": "connect-four",
   "version": "0.1.0",
-  "homepage": "http://jtdevsource.github.io/connect-four",
+  "homepage": "https://jtdevsource.github.io/connect-four",
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
