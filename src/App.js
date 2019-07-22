@@ -82,7 +82,7 @@ function evaluateBoard(board, lastCol) {
       }
     }
 
-    if( path.filter(cell=>cell.owner === thisOwner).length === 4 ) {
+    if( path.filter(cell=>cell.owner === thisOwner).length >= 4 ) {
       path.map(cell=>cell.winner = true);
       result = true;
     }
