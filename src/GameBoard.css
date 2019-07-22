@@ -1,24 +1,17 @@
 .GameBoard {
-    position: relative;
-    width: 450px;
-    height: 450px;
+    position: absolute;
+    width: 420px;
+    height: 360px;
     top: 100px;
 }
 
 .GameField {
-    /* margin: auto; */
     display: flex;
-    align-items: center;
-    flex-direction: row;
-    top: 60px;
-    position: absolute;
-    /* border: solid; */
-    
 }
 
 .Mask {
     position: absolute;
-    top: 45px;
+    top: -15px;
     left: -15px;
     border: 15px solid #007fff;
     border-radius: 4px;
@@ -32,22 +25,16 @@
 .GameColumn {
     flex-flow: column wrap;
     display: flex;
-    /* border: solid; */
 }
 
 .GameCell {
-    /* border: solid; */
     width: 60px;
     height: 60px;
-    text-align: center;
-    color: #fff;
     background: radial-gradient(circle, currentcolor 12px, #666 13px, currentcolor 14px, currentcolor 21px, #666 22px, transparent 23px, transparent) center/60px;
 }
 
-.Red {
-    color: #ff010b;
-}
-
-.Yellow {
-    color: #ffd918;
+.GameCellWinner {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, currentcolor 12px, #666 13px, #00ff00 14px, currentcolor 21px, #666 22px, transparent 23px, transparent) center/60px;
 }
